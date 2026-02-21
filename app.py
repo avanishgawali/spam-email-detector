@@ -12,9 +12,8 @@ data = pd.read_csv("mail_data.csv")
 # Replace null values
 data = data.where((pd.notnull(data)), '')
 
-# Label spam as 0 and ham as 1
-data.loc[data['Category'] == 'spam', 'Category'] = 0
-data.loc[data['Category'] == 'ham', 'Category'] = 1
+# Convert labels properly (WRITE THIS HERE)
+data['Category'] = data['Category'].map({'spam': 0, 'ham': 1})
 
 X = data['Message']
 Y = data['Category']
@@ -48,4 +47,5 @@ def predict():
     return render_template('index.html', prediction_text=result)
 
 if __name__ == "__main__":
+
     app.run(debug=True)
